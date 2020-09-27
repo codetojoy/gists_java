@@ -1,0 +1,7 @@
+#!/Users/measter/tools/jdk-11.jdk/Contents/Home/bin/java --source 10 
+
+public class Quick {
+    public static void main(String[] args) {
+        System.out.println("TRACER hello");
+    }
+}
