@@ -1,0 +1,20 @@
+{
+  "country": "US",
+  "square": {
+    "northeast": {
+      "lng": 5.18232,
+      "lat": 42.91431
+    },
+    "southwest": {
+      "lng": 5.18240,
+      "lat": 42.91422
+    }
+  },
+  "importantPlace": "Building",
+  "coordinates": {
+    "lng": 5.18234,
+    "lat": 42.91427
+  },
+  "words": "trades.rare.cable",
+  "map": "https://w3w.co/trades.rare.cable"
+}
