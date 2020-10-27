@@ -1,0 +1,3 @@
+grant {
+    permission CustomPermission "my-operation";
+};
