@@ -1,0 +1,29 @@
+<project name="example" xmlns:ivy="antlib:org.apache.ivy.ant">
+
+<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+  <classpath>
+    <pathelement location="./lib/ant-contrib-1.0b3.jar"/>
+  </classpath>
+</taskdef>
+
+<property environment="env" />
+<!-- RESOLVE -->
+<target name="init-ivy" > <!-- COMMENTED OUT: depends="define-tasks"> -->
+    <!-- Added for IVY HOME -->
+    <if>
+        <isset property="env.IVY_HOME"/>
+        <then>
+            <echo message="TRACER then"/>
+            <property name="ivy.home" value="${env.IVY_HOME}"/>
+        </then>
+        <else>
+            <echo message="TRACER else"/>
+            <property name="ivy.home" value="${env.USERPROFILE}/ivy"/>
+        </else>
+    </if>   
+    <echo message="ivy.home is ${ivy.home}"/>
+    
+    <ivy:settings file="${ivy.home}/ivysettings.xml"/>
+    <echo message="Ready."/>
+</target>
+</project>
