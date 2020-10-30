@@ -19,8 +19,8 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 public class MyClassTestCase {
     private MyClass myClass = null;
 
-	@Before
-	public void setUp() {
+    @Before
+    public void setUp() {
         PowerMockito.mockStatic(LoggerFact.class);
     }
 
