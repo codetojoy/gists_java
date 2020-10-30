@@ -30,7 +30,7 @@ public class MyClassTestCase {
     }
 
     @Test
-    public void testGetFoo_evenId() {
+    public void testMethodToBeTested() {
         Logger mockLogger = Mockito.mock(Logger.class);
 
         PowerMockito.when(LoggerFact.getLogger(eq(MyClass.class),eq("test"))).thenReturn(mockLogger);
