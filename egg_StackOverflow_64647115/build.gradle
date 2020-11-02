@@ -1,0 +1,18 @@
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'Example'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.2'
+    implementation 'commons-io:commons-io:2.8.0'
+}
+
+run {
+    args "data.json"
+}

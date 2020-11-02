@@ -1,0 +1,18 @@
+{
+  "myindex3" : {
+    "aliases" : { },
+    "mappings" : { },
+    "settings" : {
+      "index" : {
+        "creation_date" : "1604318685694",
+        "number_of_shards" : "5",
+        "number_of_replicas" : "1",
+        "uuid" : "oiZMr2qqQiWuEzu_rfa0mg",
+        "version" : {
+          "created" : "6080099"
+        },
+        "provided_name" : "myindex3"
+      }
+    }
+  }
+}
