@@ -31,6 +31,7 @@ public class SomeClass extends Thread {
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt(); 
             } catch (Exception ex) {
+                System.out.println("TRACER caught exception: " + ex.getMessage());
             }
 
             counter++;

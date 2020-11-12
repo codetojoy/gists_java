@@ -15,23 +15,23 @@ import org.powermock.core.classloader.annotations.PowerMockIgnore;
 
 @RunWith(PowerMockRunner.class)
 @PowerMockIgnore("javax.management.*")
-@PrepareForTest({SomeClass.class, Thread.class})
-public class SomeClassTestCase {
+@PrepareForTest({Foo.class}) 
+public class FooTestCase {
 
     @Test(expected=Test.None.class)
-    public void testRun() throws Exception {     
-        // if false, test will take several seconds:
-        boolean isMockMode = true;
+    public void testFoo() throws Exception {     
+        PowerMockito.mockStatic(Foo.class);
+        PowerMockito.doThrow(new RuntimeException("mock error")).when(Foo.class, "mySleep", Matchers.anyLong());
+        Foo myFoo = new Foo();
 
-        if (isMockMode) {
-            PowerMockito.mockStatic(Thread.class);
-            PowerMockito.doThrow(new RuntimeException("mock error")).when(Thread.class);
-            Thread.sleep(Matchers.anyLong()); 
+        // test
+        try {
+            myFoo.foo();
+            System.out.println("TRACER run OK");
+        } catch (Exception ex) {
+            System.err.println("TRACER caught message: " + ex.getMessage());
         }
 
-        SomeClass someClass = new SomeClass();
-        
-        // test
-        someClass.run(); 
+        // PowerMockito.verifyStatic();
     }
 }
