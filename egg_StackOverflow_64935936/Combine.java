@@ -26,26 +26,25 @@ class Server {
         return new Item();
     }
 
-    void getCombo(BiFunction<Boolean,Item,Void> handler) throws Exception {
+    void getCombo(BiConsumer<Boolean,Item> handler) throws Exception {
         CompletionStage<Item> itemStage = CompletableFuture.completedFuture(getItem()); 
 
         Supplier<Boolean> booleanTask = new BooleanSupplier();
         CompletionStage<Boolean> booleanStage = CompletableFuture.supplyAsync(booleanTask);
        
-        CompletionStage<Void> comboStage = booleanStage.thenCombineAsync(itemStage, handler);
+        CompletionStage<Void> comboStage = booleanStage.thenAcceptBothAsync(itemStage, handler);
         ((CompletableFuture) comboStage).join();
     }
 }
 
-class Client implements BiFunction<Boolean,Item,Void> {
+class Client implements BiConsumer<Boolean,Item> {
     Item item;
     boolean value;
 
     @Override
-    public Void apply(Boolean value, Item item) {
+    public void accept(Boolean value, Item item) {
         this.item = item;
         this.value = value;
-        return null;
     }
 
     void go() throws Exception {
