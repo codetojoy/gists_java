@@ -1,6 +1,6 @@
 
 import java.util.*;
-import java.text.*;
+import java.text.SimpleDateFormat;
 import java.util.stream.Collectors;
 
 class Recipe {
@@ -52,10 +52,9 @@ public class Example {
         
         List<Recipe> filteredList = 
             recipes.stream()
-                   .filter(r -> r.getIngredients()
+                   .filter(r -> ! r.getIngredients()
                                  .stream()
-                                 .filter(i -> i.getUseBy().before(lunchDate))
-                                 .count() == 0)
+                                 .anyMatch(i -> i.getUseBy().before(lunchDate)))
                    .collect(Collectors.toList());
 
         return filteredList;
