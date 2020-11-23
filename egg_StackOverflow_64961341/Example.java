@@ -53,8 +53,8 @@ public class Example {
         List<Recipe> filteredList = 
             recipes.stream()
                    .filter(r -> ! r.getIngredients()
-                                 .stream()
-                                 .anyMatch(i -> i.getUseBy().before(lunchDate)))
+                                   .stream()
+                                   .anyMatch(i -> i.getUseBy().before(lunchDate)))
                    .collect(Collectors.toList());
 
         return filteredList;
