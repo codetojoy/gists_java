@@ -1,0 +1,15 @@
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'net.codetojoy.Example'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation 'org.jooq:jool:0.9.14'
+
+    testImplementation 'junit:junit:4.12'
+}
