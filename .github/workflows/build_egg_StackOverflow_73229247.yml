@@ -39,5 +39,5 @@ jobs:
         working-directory: egg_StackOverflow_73229247
 
       - name: Maven compile
-        run: ./mvn-clean.sh && ./mvn-compile.sh
+        run: ./mvn-compile.sh
         working-directory: egg_StackOverflow_73229247
