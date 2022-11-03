@@ -34,10 +34,6 @@ jobs:
           java-version: 19
           maven-version: ${{ matrix.maven }}
 
-      - name: Maven clean
-        run: mvn-clean-win.bat
-        working-directory: egg_StackOverflow_73229247
-
       - name: Maven compile
-        run: mvn-compile-win.bat
+        run: ./mvn-compile-win.bat
         working-directory: egg_StackOverflow_73229247
