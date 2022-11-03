@@ -15,8 +15,9 @@ Summary:
 Build Notes:
 ------------
 
-* tested with [this jdk](./JDK.version.md)
 * tested with [this version](./Maven.version.md) of Maven 
+* tested with [this jdk](./JDK.version.md)
+* see also [this Github Action](../.github/workflows/build_egg_StackOverflow_73229247.yml)
 
 To Build (using Maven):
 ---------------------
