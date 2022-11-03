@@ -1,5 +1,5 @@
 
-name: Java compile 
+name: Java compile on Ubuntu 
 
 on:
   workflow_dispatch:

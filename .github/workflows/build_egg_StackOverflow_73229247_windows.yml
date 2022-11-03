@@ -1,5 +1,5 @@
 
-name: Java compile 
+name: Java compile on Windows 
 
 on:
   workflow_dispatch:
