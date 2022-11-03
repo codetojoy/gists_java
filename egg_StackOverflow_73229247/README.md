@@ -23,7 +23,7 @@ To Build (using Maven):
 ---------------------
 
 * `./mvn-go.sh` will clean, compile, exec 
-* for Windows users, the Bash scripts will port easily to `.bat` files, or to straight command line
+* for Windows users, see analogous `.bat` files
 
 To Build (using Bash):
 ----------------------
