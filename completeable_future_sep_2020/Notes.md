@@ -15,3 +15,7 @@
     - can use lambdas as well
 * CF uses ForkJoinPool but we can pass in our own thread-pool 
 
+* `thenApply()`
+* `thenAccept()` : take arg but return Void
+* `thenRun()` : no arg, return Void
+
