@@ -29,6 +29,7 @@ public class Timer {
         return result;
     }
 
+    public boolean exceedsThreshold() { return isPastThreshold(); } 
     public String getElapsed(String prefix) {
         String result = "N/A";
 

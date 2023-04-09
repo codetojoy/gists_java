@@ -5,9 +5,20 @@ apply plugin: 'application'
 mainClassName = 'net.codetojoy.App'
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
-    testCompile 'junit:junit:4.13.1'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.11.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.2'
+
+    testImplementation 'junit:junit:4.13.1'
+}
+
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "failed"
+    }
 }
