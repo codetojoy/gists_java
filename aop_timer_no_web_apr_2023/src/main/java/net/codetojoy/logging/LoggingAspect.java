@@ -6,12 +6,9 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-// import org.springframework.stereotype.Component;
 
 @Aspect
-// @Component
 public class LoggingAspect {
-	// public static final Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
 	@Around("@annotation(net.codetojoy.logging.LogExecutionTime)")
 	public Object methodTimeLogger(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {

@@ -1,4 +1,4 @@
 #!/bin/bash
 
-gradle clean compileTJ 
+./gradlew clean compileTJ 
 
