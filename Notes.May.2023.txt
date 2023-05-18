@@ -1,0 +1,3 @@
+git tag -a 2023.05.sprintname1 -m "example release"
+git push origin 2023.05.sprintname1
+git checkout 2023.05.sprintname1
