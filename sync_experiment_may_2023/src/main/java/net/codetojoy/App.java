@@ -16,17 +16,11 @@ public class App {
     private void callFooService() throws Exception {
         String name = "EVH";
         String address = "Pasadena";
-        emitLog("setting latch for sync operation");
-        CountDownLatch latch = new CountDownLatch(1);
-        fooService.doSomething(name, address, new Consumer<Boolean>() {
-            @Override
-            public void accept(Boolean result) {
-                emitLog("received result: " + result);
-                latch.countDown();
-            }
-        });
-        latch.await();
-        emitLog("latch is ready!");
+        emitLog("indirectly setting latch for sync operation");
+        FooServiceCallback fooServiceCallback = new FooServiceCallback();
+        fooService.doSomething(name, address, fooServiceCallback);
+        boolean isReady = fooServiceCallback.isReady();
+        emitLog("indirect: latch is ready! isReady: " + isReady);
     }
 
     public static void main(String... args) throws Exception {

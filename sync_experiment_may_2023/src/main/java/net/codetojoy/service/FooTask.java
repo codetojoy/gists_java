@@ -4,7 +4,6 @@ package net.codetojoy.service;
 import java.net.http.*;
 import java.net.URI;
 import java.util.concurrent.*;
-import java.util.function.Consumer;
 
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -17,9 +16,9 @@ class FooTask implements Callable<Foo> {
 
     String name;
     String address;
-    Consumer<Boolean> callback;
+    FooServiceCallback callback;
 
-    public FooTask(String name, String address, Consumer<Boolean> callback) {
+    public FooTask(String name, String address, FooServiceCallback callback) {
         this.name = name;
         this.address = address;
         this.callback = callback;

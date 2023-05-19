@@ -3,14 +3,13 @@ package net.codetojoy.service;
 
 import net.codetojoy.Timer;
 import java.util.concurrent.*;
-import java.util.function.Consumer;
 
 public class FooService {
     private ExecutorService executor = Executors.newFixedThreadPool(3);
 
-    public void doSomething(String name, String address, Consumer<Boolean>... callback) {
+    public void doSomething(String name, String address, FooServiceCallback... callback) {
         try {
-            Consumer<Boolean> fooServiceCallback = null;
+            FooServiceCallback fooServiceCallback = null;
             if (callback != null && callback.length > 0) {
                 fooServiceCallback = callback[0];
             }
