@@ -14,8 +14,7 @@ import net.codetojoy.models.Account;
 import net.codetojoy.utils.*;
 
 public class FooService {
-    private static final String TARGET_URL = "https://jsonplaceholder.typicode.com/posts";
-    // private Executor executor = CompletableFuture.delayedExecutor(100, TimeUnit.MILLISECONDS);
+    private static final String TARGET_URL = Constants.POST_URL;
     private ExecutorService executor = Executors.newFixedThreadPool(4);
 
     public void shutdown() {
@@ -44,5 +43,4 @@ public class FooService {
                     return Stream.concat(fooList1.stream(), fooList2.stream()).collect(toList());
                 });
     }
-
 }

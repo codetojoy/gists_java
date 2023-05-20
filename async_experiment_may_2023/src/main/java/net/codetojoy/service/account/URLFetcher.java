@@ -38,8 +38,6 @@ public class URLFetcher {
         Account result = null;
 
         try {
-            // pathogenicSimulatedDelay();
-
             URI targetURI = new URI(url);
             HttpRequest httpRequest = HttpRequest.newBuilder()
                                                  .uri(targetURI)
@@ -58,22 +56,4 @@ public class URLFetcher {
 
         return result;
     }
-
-    /*
-    private int getRandom(int min, int max) {
-        Random random = new Random();
-        int x = (max - min) + 1;
-        // result is min + [0,max-min]
-        int result =  min + random.nextInt(x);
-        return result;
-    }
-
-    private void pathogenicSimulatedDelay() {
-        try {
-            int delayInSeconds = getRandom(1,3);
-            Thread.sleep(delayInSeconds * 1000);
-        } catch (Exception ex) {
-        }
-    }
-    */
 }
