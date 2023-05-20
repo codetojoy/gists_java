@@ -1,5 +1,5 @@
 
-package net.codetojoy.service;
+package net.codetojoy.service.foo;
 
 public class Foo {
     private int id;

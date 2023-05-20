@@ -1,10 +1,11 @@
 
-package net.codetojoy.service;
+package net.codetojoy.service.foo;
 
 import java.net.http.*;
 import java.net.URI;
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.*;
 
 import com.fasterxml.jackson.databind.*;
@@ -12,7 +13,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 
 import net.codetojoy.utils.*;
 
-public class URLFetcher {
+public class URLFetcherPost {
     private static final String JSON_BODY_FORMAT = "{\"name\": \"%s\", \"address\": \"%s\"}";
 
     public CompletableFuture<Collection<Foo>> fetch(Executor executor, String url, String name, String address) {
@@ -61,9 +62,18 @@ public class URLFetcher {
         return result;
     }
 
+    private int getRandom(int min, int max) {
+        Random random = new Random();
+        int x = (max - min) + 1;
+        // result is min + [0,max-min]
+        int result =  min + random.nextInt(x);
+        return result;
+    }
+
     private void pathogenicSimulatedDelay() {
         try {
-            Thread.sleep(3 * 1000);
+            int delayInSeconds = getRandom(1,3);
+            Thread.sleep(delayInSeconds * 1000);
         } catch (Exception ex) {
         }
     }

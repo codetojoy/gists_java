@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.concurrent.*;
 
 import net.codetojoy.models.Account;
-import net.codetojoy.service.*;
+import net.codetojoy.service.foo.*;
 import net.codetojoy.utils.Logger;
 
 public class App {

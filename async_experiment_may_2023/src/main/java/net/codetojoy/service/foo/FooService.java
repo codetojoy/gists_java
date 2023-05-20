@@ -1,5 +1,5 @@
 
-package net.codetojoy.service;
+package net.codetojoy.service.foo;
 
 import java.util.*;
 import java.util.concurrent.*;
@@ -25,7 +25,7 @@ public class FooService {
     public CompletableFuture<Collection<Foo>> fetchInfoForAccounts(List<Account> accounts) {
         final List<CompletableFuture<Collection<Foo>>> futures =
             accounts.stream().map(account -> {
-                URLFetcher fetcher = new URLFetcher();
+                URLFetcherPost fetcher = new URLFetcherPost();
                 String name = account.getName();
                 String address = account.getAddress();
                 return fetcher.fetch(executor, TARGET_URL, name, address);
