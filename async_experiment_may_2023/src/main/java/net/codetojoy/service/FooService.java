@@ -15,7 +15,12 @@ import net.codetojoy.utils.*;
 
 public class FooService {
     private static final String TARGET_URL = "https://jsonplaceholder.typicode.com/posts";
-    private Executor executor = CompletableFuture.delayedExecutor(100, TimeUnit.MILLISECONDS);
+    // private Executor executor = CompletableFuture.delayedExecutor(100, TimeUnit.MILLISECONDS);
+    private ExecutorService executor = Executors.newFixedThreadPool(4);
+
+    public void shutdown() {
+        executor.shutdown();
+    }
 
     public CompletableFuture<Collection<Foo>> fetchInfoForAccounts(List<Account> accounts) {
         final List<CompletableFuture<Collection<Foo>>> futures =
