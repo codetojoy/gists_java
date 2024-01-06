@@ -27,15 +27,15 @@ public class Status {
 
     protected String getValue(int index) {
         switch (index) {
-            case 1:
+            case 0:
                 return FIELD_1;
-            case 2:
+            case 1:
                 return FIELD_2;
-            case 3:
+            case 2:
                 return FIELD_4;
-            case 4:
+            case 3:
                 return FIELD_8;
-            case 5:
+            case 4:
                 return FIELD_16;
             default:
                 return ERROR;
