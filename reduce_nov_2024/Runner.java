@@ -63,7 +63,7 @@ public class Runner {
      */
     Stream<Data> myReducer(List<Data> datasForDate) {
         Data identity = new Data("", 0);
-        return List.of(datasForDate.stream().reduce(identity, this::combine)).stream();
+        return Stream.of(datasForDate.stream().reduce(identity, this::combine));
     }
 
     void run() {
