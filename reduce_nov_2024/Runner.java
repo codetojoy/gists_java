@@ -57,13 +57,14 @@ public class Runner {
         return result;
     }
 
+    private static final Data IDENTITY = new Data("", 0);
+
     /*
      *  example input: [{"2024-11-18", 10}, {"2024-11-18", 10}, {"2024-11-18", 10}]
      *  example output: stream of [{"2024-11-18", 30}]
      */
     Stream<Data> myReducer(List<Data> datasForDate) {
-        Data identity = new Data("", 0);
-        return Stream.of(datasForDate.stream().reduce(identity, this::combine));
+        return Stream.of(datasForDate.stream().reduce(IDENTITY, this::combine));
     }
 
     void run() {
