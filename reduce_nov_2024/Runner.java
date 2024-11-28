@@ -50,10 +50,9 @@ public class Runner {
     Data combine(Data data1, Data data2) {
         // use date2 as first iteration, data1 will be identity
         String date2 = data2.getDate();
+        int sum = data1.getValue() + data2.getValue();
+        Data result = new Data(date2, sum);
 
-        int value1 = data1.getValue();
-        int value2 = data2.getValue();
-        Data result = new Data(date2, value1 + value2);
         return result;
     }
 
@@ -61,7 +60,7 @@ public class Runner {
 
     /*
      *  example input: [{"2024-11-18", 10}, {"2024-11-18", 10}, {"2024-11-18", 10}]
-     *  example output: stream of [{"2024-11-18", 30}]
+     *  example output: stream of {"2024-11-18", 30}
      */
     Stream<Data> myReducer(List<Data> datasForDate) {
         return Stream.of(datasForDate.stream().reduce(IDENTITY, this::combine));
