@@ -1,0 +1,14 @@
+#!/usr/bin/java --source 25
+
+// usage: ./Runner
+
+void emitLog(List<String> items) {
+    for (String item: items) {
+        IO.println("item: " + item);
+    }
+}
+
+void main() { 
+    emitLog(List.of("Mozart", "Chopin", "Brahms"));
+    IO.println("Ready.");
+}
