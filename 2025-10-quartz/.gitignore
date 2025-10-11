@@ -1,0 +1,14 @@
+my_setvars.sh 
+
+# Gradle
+.gradle/
+build/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Compiled class files
+*.class
