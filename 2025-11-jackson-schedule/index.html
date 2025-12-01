@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jackson Scheduling</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-min.js"></script>
+</head>
+<body>
+    <h3>Hello</h3>
+
+    <div>
+        <label for="sunday">Sunday:</label>
+        <select id="sunday" name="sunday" data-bind="value: sunday.configType">
+            <option value="includeAllDay">Include All Day</option>
+            <option value="excludeAllDay">Exclude All Day</option>
+            <option value="custom">Custom</option>
+        </select>
+
+        <input type="text" id="sunday-hour" name="sunday-hour" placeholder="Hour" size="3" data-bind="value: sunday.hour">
+        <input type="text" id="sunday-minute" name="sunday-minute" placeholder="Minute" size="3" data-bind="value: sunday.minute">
+        <select id="sunday-ampm" name="sunday-ampm" data-bind="value: sunday.ampm">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="saturday">Saturday:</label>
+        <select id="saturday" name="saturday" data-bind="value: saturday.configType">
+            <option value="includeAllDay">Include All Day</option>
+            <option value="excludeAllDay">Exclude All Day</option>
+            <option value="custom">Custom</option>
+        </select>
+
+        <input type="text" id="saturday-hour" name="saturday-hour" placeholder="Hour" size="3" data-bind="value: saturday.hour">
+        <input type="text" id="saturday-minute" name="saturday-minute" placeholder="Minute" size="3" data-bind="value: saturday.minute">
+        <select id="saturday-ampm" name="saturday-ampm" data-bind="value: saturday.ampm">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="weekday">Weekday:</label>
+        <select id="weekday" name="weekday" data-bind="value: weekDay.configType">
+            <option value="includeAllDay">Include All Day</option>
+            <option value="excludeAllDay">Exclude All Day</option>
+            <option value="custom">Custom</option>
+        </select>
+
+        <input type="text" id="weekday-hour" name="weekday-hour" placeholder="Hour" size="3" data-bind="value: weekDay.hour">
+        <input type="text" id="weekday-minute" name="weekday-minute" placeholder="Minute" size="3" data-bind="value: weekDay.minute">
+        <select id="weekday-ampm" name="weekday-ampm" data-bind="value: weekDay.ampm">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+        </select>
+    </div>
+
+    <div>
+        <button id="go-button" data-bind="click: onGoClick">Go</button>
+    </div>
+
+    <script>
+        // Wait for all scripts to load before initializing
+        window.addEventListener('load', function() {
+            console.log("Page loaded");
+
+            // Knockout ViewModel
+            function AppViewModel() {
+                var self = this;
+
+                // Sunday
+                self.sunday = {
+                    configType: ko.observable('excludeAllDay'),
+                    hour: ko.observable(''),
+                    minute: ko.observable(''),
+                    ampm: ko.observable('AM')
+                };
+
+                // Saturday
+                self.saturday = {
+                    configType: ko.observable('excludeAllDay'),
+                    hour: ko.observable(''),
+                    minute: ko.observable(''),
+                    ampm: ko.observable('AM')
+                };
+
+                // WeekDay
+                self.weekDay = {
+                    configType: ko.observable('excludeAllDay'),
+                    hour: ko.observable(''),
+                    minute: ko.observable(''),
+                    ampm: ko.observable('AM')
+                };
+
+                // Generate JSON schema
+                self.generateSchema = function() {
+                    var schema = {
+                        sunday: self.generateDayConfig(self.sunday),
+                        saturday: self.generateDayConfig(self.saturday),
+                        weekDay: self.generateDayConfig(self.weekDay)
+                    };
+                    return schema;
+                };
+
+                self.generateDayConfig = function(day) {
+                    var configType = day.configType();
+
+                    if (configType === 'excludeAllDay') {
+                        return {
+                            config: {
+                                type: "excludeAllDay"
+                            }
+                        };
+                    } else if (configType === 'includeAllDay') {
+                        return {
+                            config: {
+                                type: "includeAllDay"
+                            }
+                        };
+                    } else if (configType === 'custom') {
+                        var hour = parseInt(day.hour());
+                        var minute = parseInt(day.minute());
+                        var ampm = day.ampm();
+
+                        // Convert to 24-hour format
+                        if (ampm === 'PM' && hour !== 12) {
+                            hour += 12;
+                        } else if (ampm === 'AM' && hour === 12) {
+                            hour = 0;
+                        }
+
+                        return {
+                            config: {
+                                type: "customRange",
+                                customRange: {
+                                    startTime: {
+                                        hour: hour,
+                                        minute: minute
+                                    },
+                                    endTime: {
+                                        hour: hour,
+                                        minute: minute
+                                    }
+                                }
+                            }
+                        };
+                    }
+                };
+
+                // Go button click handler
+                self.onGoClick = function() {
+                    console.log("TRACER");
+                    var schema = self.generateSchema();
+                    console.log(JSON.stringify(schema, null, 2));
+                };
+            }
+
+            ko.applyBindings(new AppViewModel());
+        });
+    </script>
+</body>
+</html>
