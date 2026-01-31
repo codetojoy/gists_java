@@ -35,8 +35,16 @@ We want to create two version of an app: Version Foo and Version Bar with these 
     * it is crucial for the demo that Version Bar use a jar that Version Foo does not: e.g. a standard bouncy-castle jar with some token encryption to keep us honest. 
     * alter the build so that there are jar/deliverables for both Version Foo and Version Bar. Ideally, one does not contain jars that are used solely by the other.
 
-### Phase 3: TODO list
+### COMPLETE - Phase 3: TODO list
 
-* Refactor projects so that it is a single module with packages `net.codetojoy.sensor.common`, `net.codetojoy.sensor.foo`, and `net.codetojoy.sensor.bar` and that the Foo and Bar deliverables are build with `foo-build.sbt` and `bar-build.sbt` that are copied into place (i.e. `build.sbt`) based on a driver Bash script.
-* The reason for this is that we want to bring this code, later, into a Play Framework web app.
+* COMPLETE - Refactor projects so that it is a single module with packages `net.codetojoy.sensor.common`, `net.codetojoy.sensor.foo`, and `net.codetojoy.sensor.bar` and that the Foo and Bar deliverables are build with `foo-build.sbt` and `bar-build.sbt` that are copied into place (i.e. `build.sbt`) based on a driver Bash script.
+* COMPLETE - The reason for this is that we want to bring this code, later, into a Play Framework web app.
+
+### Phase 4: TODO list
+
+* Introduce Guice modules into the project.
+* We want Guice modules for Foo and Bar.
+* Both Guice modules should contain the service loading aspect and maintain the build versions so that Version Foo does not need to include the Bouncy Castle jar.
+* The main `Runner.java` should no longer do service loading but rather use the appropriate Guice module for each app version.
+* The sbt templates should remain as designed, but be updated, of course to accomodate the new structure.
 
