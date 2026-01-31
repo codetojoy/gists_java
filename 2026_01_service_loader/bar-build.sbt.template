@@ -1,0 +1,41 @@
+ThisBuild / scalaVersion := "3.3.1"
+ThisBuild / organization := "net.codetojoy"
+ThisBuild / version := "1.0.0"
+
+// Java settings
+ThisBuild / javacOptions ++= Seq("-source", "21", "-target", "21")
+
+lazy val root = (project in file("."))
+  .settings(
+    name := "sensor-app-bar",
+
+    // Pure Java project
+    Compile / compileOrder := CompileOrder.JavaThenScala,
+    crossPaths := false,
+    autoScalaLibrary := false,
+
+    // Bouncy Castle dependency
+    libraryDependencies += "org.bouncycastle" % "bcprov-jdk18on" % "1.77",
+
+    // Exclude foo package from compilation
+    Compile / unmanagedSources / excludeFilter := HiddenFileFilter ||
+      new SimpleFileFilter(_.getAbsolutePath.contains("/sensor/foo/")),
+
+    // Exclude foo's plain data and services-foo from resources
+    Compile / unmanagedResources / excludeFilter := HiddenFileFilter ||
+      new SimpleFileFilter(f => f.getName == "sensor_data.txt" ||
+        f.getAbsolutePath.contains("services-foo")),
+
+    // Main class
+    Compile / packageBin / mainClass := Some("net.codetojoy.sensor.common.Runner"),
+    assembly / mainClass := Some("net.codetojoy.sensor.common.Runner"),
+    assembly / assemblyJarName := "sensor-app-bar.jar",
+
+    // Merge strategy
+    assembly / assemblyMergeStrategy := {
+      case PathList("META-INF", "services", _*) => MergeStrategy.concat
+      case PathList("META-INF", "versions", _*) => MergeStrategy.first
+      case PathList("META-INF", _*) => MergeStrategy.discard
+      case _ => MergeStrategy.first
+    }
+  )
